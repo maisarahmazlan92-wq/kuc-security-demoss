@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1">
+
+<title>KUC Location Security Lab</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    padding: 30px;
+}
+
+button {
+    padding: 15px;
+    background: #1557b0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+
+<h2>KUC Location Security Test</h2>
+
+<p>
+This is an authorized cybersecurity
+training exercise.
+</p>
+
+<p>
+Your location will be displayed only
+in this browser. It will not be sent
+to the instructor.
+</p>
+
+<button onclick="getLocation()">
+Check My Location
+</button>
+
+<div id="result"></div>
+
+<script>
+
+function getLocation() {
+
+    const result =
+        document.getElementById("result");
+
+    if (!navigator.geolocation) {
+        result.innerText =
+            "Geolocation is not supported.";
+        return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(position) {
+
+            let latitude =
+                position.coords.latitude;
+
+            let longitude =
+                position.coords.longitude;
+
+            result.innerHTML =
+                "Latitude: " + latitude +
+                "<br>Longitude: " + longitude;
+        },
+
+        function(error) {
+            result.innerText =
+                "Location permission denied or unavailable.";
+        }
+
+    );
+}
+
+</script>
+
+</body>
+</html>
